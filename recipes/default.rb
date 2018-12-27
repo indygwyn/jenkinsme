@@ -18,6 +18,19 @@ end
 # install jenkins
 package 'jenkins'
 
+package %w{ git maven subversion ant unzip zip }
+
+ark 'gradle' do
+  url 'https://services.gradle.org/distributions/gradle-5.0-bin.zip'
+  path '/opt'
+  action :put
+end
+
+
+yumgroup 'Development Tools' do
+  action :install
+end
+
 # enable and start jenkins
 service 'jenkins' do
   action [:start, :enable]
